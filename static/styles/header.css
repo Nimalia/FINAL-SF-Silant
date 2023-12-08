@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Astra Sans', sans-serif;
+    background-color: #EBE6D6;
+    color: #163E6C;
+}
+
+.header {
+    font-weight: bold;
+    background-color: #EBE6D6;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.logo img {
+    max-height: 80px; 
+    max-width: 80px;
+}
+
+.contact-info {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.contact-info p {
+    color: #163E6C;
+}
+
+.button {
+    background-color: #D20A11;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.logout,
+.login {
+    background-color: #D20A11;
+    padding: 12px;
+    color: white;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Убираем подчеркивание */
+    margin-right: 10px; /* Добавляем отступ справа */
+}
+
+.logout:hover,
+.login:hover {
+    background-color: #f5333a;
+    text-decoration: none; /* Убираем подчеркивание при наведении */
+}
+
+
+/* для адаптивной верстки */
+
+/* Для экранов шириной от 1920px и выше */
+@media (min-width: 1920px) {
+.logout,
+.login {
+    background-color: #D20A11;
+    padding: 12px;
+    color: white;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Убираем подчеркивание */
+    margin-right: 60px; /* Добавляем отступ справа */
+}
+}
+
+/* Для экранов шириной от 1366px до 1919px */
+@media (min-width: 1366px) and (max-width: 1919px) {
+    /* стили для разрешения 1366x768 */
+}
+
+/* Для экранов шириной от 1536px до 1365px */
+@media (min-width: 1536px) and (max-width: 1365px) {
+    /* стили для разрешения 1536x864 */
+}
+
+/* Для экранов шириной от 1440px до 1024px */
+@media (min-width: 1440px) and (max-width: 1024px) {
+    /* стили для разрешения 1440x900 */
+}
+
+/* Для экранов шириной от 360px до 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    .logout,
+    .login {
+        background-color: #D20A11;
+        padding: 12px;
+        color: white;
+        transition: background-color 0.3s;
+        text-decoration: none; /* Убираем подчеркивание */
+        margin-right: 0px; /* Добавляем отступ справа */
+    }
+
+    .logo {
+        margin-left: 5px;
+    }
+
+    
+}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<a class="back-page" href="{% url 'techservice_list' %}"><i class="fas fa-long-arrow-alt-left"></i>Назад</a>
+<h3 style="text-align: center; margin-bottom: 40px;">Новое тех.обслуживание:</h3>
+<form class="form" name="techserviceForm" method="post" action="{{request.path}}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+
+{% endblock %}

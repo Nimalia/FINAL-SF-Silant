@@ -1,0 +1,487 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Astra Sans', sans-serif;
+    background-color: #EBE6D6;
+    margin-left: 10px; /* Отступ от левого края на 10px */
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px; /* Отступы от краев контента */
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.client img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px; /* отступ между иконкой и текстом  */
+}
+
+.client h2 {
+    margin: 0; /* Убирает внешние отступы у заголовка */
+}
+
+/* Навигация кнопок */
+.nav-panel {
+    display: block;
+    margin-top: 10px;
+    font-family: "PT Astra Sans", sans-serif !important;
+  }
+  .nav-panel ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    list-style: none; /* Убрать маркеры списка */
+    padding: 0;
+    font-family: "PT Astra Sans" !important;
+  }
+  .nav-panel ul a {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid #163E6C;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #163E6C;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s linear 0s;
+    text-decoration: none;
+    font-family: "PT Astra Sans"
+  }
+  .nav-panel ul a:hover {
+    border-color: #2567b3;
+    background-color: #2567b3;
+    color: #ffffff;
+    transition: all 0.1s linear 0s;
+  }
+  .nav-panel ul a i {
+    font-size: 3rem;
+  }
+  .nav-panel ul li a img {
+    width: 40px;
+    height: 30px;
+}
+  .nav-panel ul li.active a {
+    background-color: #163E6C;
+    color: #ffffff;
+  }
+  .nav-panel ul li.active a:hover {
+    border-color: #163E6C;
+    font-family: "PT Astra Sans" !important;
+  }
+  
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .action-buttons a {
+    display: block;
+    outline: 0;
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-family: "PT Astra Sans";
+    background-color: #163E6C;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s linear 0s;
+    text-decoration: none; 
+  }
+  .action-buttons a:hover {
+    filter: saturate(150%);
+    transition: all 0.1s linear 0s;
+  }
+
+
+  .deletew_js, .details_js {
+    cursor: pointer;
+    transition: all 0.1s linear 0s;
+  }
+  
+  .details_js {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+  }
+  
+  .details_js:hover {
+    color: #163E6C;
+    transition: all 0.1s linear 0s;
+  }
+  
+
+  /* кнопки Редактировать Удалить */
+  .actions a {
+    text-decoration: none;
+}
+  .actions a:hover {
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+}
+
+  .actions .deletedata:hover {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+
+
+/* стили для таблицы */
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.datatable {
+    width: 100%;
+}
+
+.datatable th a {
+    text-decoration: none;
+}
+
+.datatable td:nth-child(1) a {
+    text-decoration: none;
+}
+
+#tableInfo {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tableInfo th, #tableInfo td {
+    border: 3px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tableInfo th {
+    background-color: #f2f2f2;
+}
+
+
+/* стили для формы поиска */
+.search {
+    display: flex;
+    max-width: 600px; /* Максимальная ширина формы */
+    margin-bottom: 40px; 
+}
+
+#search-input {
+    flex: 1; /* Занимает все доступное пространство */
+    padding: 12px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-button {
+    background-color: #D20A11;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 8px; /* Расстояние между кнопкой и полем ввода */
+}
+
+
+/* для авторизации */
+.account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; 100% высота окна просмотра */
+}
+
+.account-form {
+    text-align: center;
+    padding: 20px; /* Отступы вокруг формы */
+    border-radius: 10px; /* Скругление углов формы */
+    margin-bottom: 10px; /* Отступ между элементами формы */
+
+}
+
+.account-form h1 {
+    margin-bottom: 20px;
+}
+
+.account-form input {
+    margin-bottom: 10px;
+    width: 200px;
+    padding: 16px;
+}
+
+
+/* Стили для примечания о регистрации */
+.registration-note {
+    text-align: center;
+    margin-top: 100px;
+    clear: both; /* Очистка обтекания */
+    font-size: 18px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+
+/* кнопка Войти */
+.interbutton {
+    background-color: #D20A11;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px; /* Расстояние между кнопкой и полем ввода */
+    
+}
+
+/* курсор кнопки Выйти */
+.logout_js {
+    cursor: pointer;
+  }
+
+/* для vehicle/update */
+  .form {
+    max-width: 600px;
+    margin: 0 auto;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: flex-start;
+  }    
+
+.united {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    margin-bottom: 12px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 8px; /* Расстояние между меткой и полем ввода */
+    font-weight: bold; /* Жирный шрифт для названия поля */
+    color: #163E6C; /* Цвет текста */
+}
+
+.form input,
+.form select,
+.form textarea {
+    width: 100%; /* Занимать всю доступную ширину контейнера */
+    padding: 8px; 
+    margin-bottom: 12px; /* Расстояние между полями ввода */
+    box-sizing: border-box; /* Учесть padding и border в общей ширине */
+}
+
+button {
+    background-color: #D20A11;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+button:hover {
+    background-color: #9C060D; 
+}
+
+/* иконка detail */
+.details-icon {
+    width: 60px;  
+    height: 60px; 
+    margin-right: 5px; 
+    vertical-align: middle;
+    margin-bottom: 19px;
+}
+
+.details-icon, h2 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 50px; 
+}
+
+.details-container {
+    margin-left: 30px;
+}
+
+.details-container p {
+    margin: 10px;
+}
+
+.details-container strong {
+    font-weight: bold;
+    color: #163E6C; 
+}
+
+/* инфо-окошко */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: #EBE6D6;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; 
+  border: 1px solid #163E6C;
+}
+
+/* Пагинация */
+.pagination {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: #163E6C;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #163E6C;
+  margin: 0 4px;
+  border-radius: 5px;
+}
+
+.pagination a:hover {
+  background-color: #163E6C;
+  color: #fff;
+}
+
+.pagination .current {
+  background-color: #D20A11;
+  color: #fff;
+  padding: 8px 16px;
+  border: 1px solid #163E6C;
+  margin: 0 4px;
+  border-radius: 5px;
+}
+/* для адаптивной верстки */
+
+/* Для экранов шириной от 1920px и выше */
+@media (min-width: 1920px) {
+    /* стили для разрешения 1920x1080 */
+}
+
+/* Для экранов шириной от 1366px до 1919px */
+@media (min-width: 1366px) and (max-width: 1919px) {
+    /* стили для разрешения 1366x768 */
+}
+
+/* Для экранов шириной от 1536px до 1365px */
+@media (min-width: 1536px) and (max-width: 1365px) {
+    /* стили для разрешения 1536x864 */
+}
+
+/* Для экранов шириной от 1440px до 1024px */
+@media (min-width: 1440px) and (max-width: 1024px) {
+    /* стили для разрешения 1440x900 */
+}
+
+/* Для экранов шириной от 360px до 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    
+    /* Навигация кнопок */
+    .nav-panel {
+        display: block;
+        margin-top: 10px;
+        font-family: "PT Astra Sans", sans-serif !important;
+      }
+
+      .nav-panel ul {
+        display: flex;
+        flex-direction: column; /* Изменено на вертикальное направление */
+        justify-content: center;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        font-family: "PT Astra Sans" !important;
+      }
+    
+      .nav-panel ul a {
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 2px solid #163E6C;
+        text-align: center;
+        font-size: 1.8rem;
+        color: #163E6C;
+        background-color: #ffffff;
+        padding: 15px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.1s linear 0s;
+        text-decoration: none;
+        font-family: "PT Astra Sans"
+      }
+
+      /* иконка detail */
+      .details-icon {
+        width: 60px;  
+        height: 60px; 
+        margin-right: 5px; 
+        vertical-align: middle;
+        margin-bottom: 5px;
+      }
+
+      .details-icon, h2 {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 20px; 
+      }
+
+      /* пагинация */
+      .pagination {
+        margin-top: 20px;
+      }
+      
+      .step-links a {
+        display: block;
+        color: #163E6C;
+        padding: 8px 16px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #163E6C;
+        margin-bottom: 5px; /* Отступ снизу между элементами */
+        border-radius: 5px;
+      }
+      
+      .step-links a:hover {
+        background-color: #163E6C;
+        color: #fff;
+      }
+      
+      .step-links .current {
+        background-color: #D20A11;
+        color: #fff;
+        padding: 8px 16px;
+        border: 1px solid #163E6C;
+        margin-bottom: 5px; /* Отступ снизу между элементами */
+        border-radius: 5px;
+      }
+      
+    
+}

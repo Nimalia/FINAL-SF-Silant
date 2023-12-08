@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<div class="client">
+<img src="{% static 'icons/user.svg' %}" alt="user">
+{% if user.is_superuser %}
+    <h2>Администратор</h2>
+{% elif user.groups.first.name == "Менеджер" %}
+    <h2>Менеджер {{user.first_name}}</h2>
+{% elif user.groups.first.name == "Сервисная организация" %}
+    <h2>Сервисная организация {{user.first_name}}</h2>
+{% else %}
+    <h2>Клиент {{user.first_name}} </h2>
+{% endif %}
+</div>
+<nav class="nav-panel">
+    <ul>
+        <li><a href="{% url 'vehicle_list' %}"><img src="{% static 'icons/vehicle.svg' %}" alt="Техника"> Техника</a></li>
+        <li><a href="{% url 'techservice_list' %}"><img src="{% static 'icons/ts.svg' %}" alt="Техобслуживание"> Тех.обслуживание</a></li>
+        <li class="active"><a href="{% url 'claim_list' %}"><img src="{% static 'icons/claim.svg' %}" alt="Рекламация"> Рекламация</a></li>
+    </ul>
+</nav>
+<h3>Информация о комплектации и технических характеристиках Вашей техники</h3>
+{% if user.is_superuser or user.groups.first.name == "Сервисная организация" or user.groups.first.name == "Менеджер" %}
+<div class="action-buttons">
+    <a href="{% url 'claim_create' %}">Новая рекламация</a>
+</div>
+{% endif %}
+<section class="area-table">
+<div class="table-container">
+<table id="tableInfo" class="datatable" data-order='[0, "desc"]'>
+    <thead class="datatable-thead">
+        <tr>
+            <th class="{% if ordering == 'failure_date' %}active{% endif %}"><a href="?ordering=failure_date">Дата отказа</a></th>
+            <th class="{% if ordering == 'operating_time' %}active{% endif %}"><a href="?ordering=operating_time">Наработка, м/час</a></th>
+            <th class="{% if ordering == 'failure_node' %}active{% endif %}"><a href="?ordering=failure_node">Узел отказа</a></th>
+            <th class="{% if ordering == 'description_failure' %}active{% endif %}"><a href="?ordering=description_failure">Описание отказа</a></th>            
+            <th class="{% if ordering == 'recovery_method' %}active{% endif %}"><a href="?ordering=recovery_method">Способ восстановления</a></th>
+            <th class="{% if ordering == 'used_spare_parts' %}active{% endif %}"><a href="?ordering=used_spare_parts">Используемые запасные части</a></th>
+            <th class="{% if ordering == 'recovery_date' %}active{% endif %}"><a href="?ordering=recovery_date">Дата восстановления</a></th>
+            <th class="{% if ordering == 'failure_date' %}active{% endif %}"><a href="?ordering=failure_date">Время простоя техники</a></th>
+            <th class="{% if ordering == 'vehicle' %}active{% endif %}"><a href="?ordering=vehicle">Техника</a></th>
+            <th class="{% if ordering == 'service_company' %}active{% endif %}"><a href="?ordering=service_company">Сервисная компания</a></th>
+            {% if user.is_superuser or user.groups.first.name == "Менеджер" or user.groups.first.name == "Сервисная организация" %}
+            <th></th>
+            {% endif %}
+        </tr>
+    </thead>
+   
+        <tbody>
+    {% for obj in claim_list %}
+        <tr>
+            <td>{{obj.failure_date|date:"d.m.Y"}}</td>
+            <td>{{obj.operating_time}}</td>
+            <td><span class="details_js" data-url="{% url 'claim_details' obj.pk 'failure_node' %}">{{obj.failure_node}}</span></td>
+            <td>{{obj.description_failure}}</td>
+            <td><span class="details_js" data-url="{% url 'claim_details' obj.pk 'recovery_method' %}">{{obj.recovery_method}}</span></td>
+            <td>{{obj.used_spare_parts}}</td>
+            <td>{{obj.recovery_date|date:"d.m.Y"}}</td>
+            <td>{{obj.downtime}}</td>
+            <td><a href="{% url 'vehicle_detail' obj.pk %}">{{obj.vehicle.serial_number}}</a></td>
+            {% if obj.service_company %}
+            <td><span class="details_js" data-url="{% url 'claim_details' obj.pk 'service_company' %}">{{obj.service_company}}</span></td>
+            {% else %}
+            <td>Нет компании</td>
+            {% endif %}
+            {% if user.is_superuser or user.groups.first.name == "Менеджер" or user.groups.first.name == "Сервисная организация" %}
+            <td>
+                <div class="actions">
+                    <a class="update" href="{% url 'claim_update' obj.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="deletedata" data-url="{% url 'claim_delete' obj.pk %}"><i class="fas fa-times"></i></a>
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+    
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</section>
+<div class="pagination">
+    <span class="step-links">
+        {% if claim_list.has_previous %}
+            <a href="?page=1">В начало</a>
+            <a href="?page={{ object_list.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ claim_list.number }} из {{ claim_list.paginator.num_pages }}
+        </span>
+
+        {% if claim_list.has_next %}
+            <a href="?page={{ claim_list.next_page_number }}">Далее</a>
+            <a href="?page={{ claim_list.paginator.num_pages }}">В конец</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

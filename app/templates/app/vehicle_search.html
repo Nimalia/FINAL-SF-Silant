@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3>Проверьте комплектацию и технические характеристики техники Силант</h3>
+<form id="search" class="search" method="get">
+    <input id="search-input" type="search" name="q" placeholder="Введите заводской номер машины">
+    <button id="search-button" type="button" onclick="searchTable()">Найти</button>
+</form>
+<p id="no-results-message" style="display: none;">Техника с данным заводским № не найдена</p>
+
+<h3>Информация о комплектации и технических характеристиках Вашей техники</h3>
+<section>
+    <table id="tableInfo">
+        <thead>
+            <tr>
+                <th>Зав. № машины</th>
+                <th>Модель техники</th>
+                <th>Модель двигателя</th>
+                <th>Зав. № двигателя</th>
+                <th>Модель трансмиссии</th>
+                <th>Зав. № трансмиссии</th>
+                <th>Модель ведущего моста</th>
+                <th>Зав. № ведущего моста</th>
+                <th>Модель управляемого моста</th>
+                <th>Зав. № управляемого моста</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <td><a href="{% url 'vehicle_detail' vehicle.pk %}">{{ vehicle.serial_number }}</a></td>
+                    <td><span class="details_js" data-url="{% url 'vehicle_details' vehicle.pk 'vehicle_model' %}">{{ vehicle.vehicle_model }}</span></td>
+                    <td><span class="details_js" data-url="{% url 'vehicle_details' vehicle.pk 'engine_model' %}">{{ vehicle.engine_model }}</span></td>
+                    <td>{{ vehicle.engine_serial_number }}</td>
+                    <td><span class="details_js" data-url="{% url 'vehicle_details' vehicle.pk 'transmission_model' %}">{{ vehicle.transmission_model }}</span></td>
+                    <td>{{ vehicle.transmission_serial_number }}</td>
+                    <td><span class="details_js" data-url="{% url 'vehicle_details' vehicle.pk 'leading_axle_model' %}">{{ vehicle.leading_axle_model }}</span></td>
+                    <td>{{ vehicle.leading_axle_serial_number }}</td>
+                    <td><span class="details_js" data-url="{% url 'vehicle_details' vehicle.pk 'steering_axle_model' %}">{{ vehicle.steering_axle_model }}</span></td>
+                    <td>{{ vehicle.steering_axle_serial_number }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<div class="pagination">
+    <span class="step-links">
+        {% if vehicles.has_previous %}
+            <a href="?page=1">В начало</a>
+            <a href="?page={{ vehicles.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ vehicles.number }} из {{ vehicles.paginator.num_pages }}
+        </span>
+
+        {% if vehicles.has_next %}
+            <a href="?page={{ vehicles.next_page_number }}">Далее</a>
+            <a href="?page={{ vehicles.paginator.num_pages }}">В конец</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

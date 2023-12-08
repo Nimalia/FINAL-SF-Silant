@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Astra Sans', sans-serif;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background-color: #163E6C;
+    color: white;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: auto;
+}
+
+.footer-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-button {
+    text-align: right;
+}
+
+.my-silant-button {
+    background-color: #D20A11;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    /* border-radius: 4px; */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* для адаптивной верстки */
+
+/* Для экранов шириной от 1920px и выше */
+@media (min-width: 1920px) {
+    .footer-button {
+        margin-right: 50px; /* Смещение влево на 50px */
+    }
+}
+
+/* Для экранов шириной от 1366px до 1919px */
+@media (min-width: 1366px) and (max-width: 1919px) {
+    /*  стили для разрешения 1366x768 */
+}
+
+/* Для экранов шириной от 1536px до 1365px */
+@media (min-width: 1536px) and (max-width: 1365px) {
+    /*  стили для разрешения 1536x864 */
+}
+
+/* Для экранов шириной от 1440px до 1024px */
+@media (min-width: 1440px) and (max-width: 1024px) {
+    /* стили для разрешения 1440x900 */
+}
+
+/* Для экранов шириной от 360px до 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    footer {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .footer-button {
+        text-align: left; /* Выравнивание кнопки по левому краю */
+        margin-top: 10px; /* Дополнительный отступ сверху */
+    }
+
+    .area-table table {
+        width: 100%; /* Занимать всю доступную ширину */
+        margin-top: 10px; /* верхний отступ */
+        margin-bottom: 10px; /*  нижний отступ */
+    }
+
+    .area-table table th,
+    .area-table table td {
+        white-space: nowrap; /* Предотвращает перенос текста в ячейках */
+    }
+}

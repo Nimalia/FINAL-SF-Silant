@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Сервис Силант{% endblock %}</title>
+    <link rel="icon" href="{% static 'icons/favicon.ico' %}" type="image/x-icon">
+    <!-- Подключение общих стилей для всех страниц -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/footer.css' %}">
+    <!-- Подключение дополнительных стилей для конкретных страниц -->
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+
+    <!-- Вставка header.html -->
+    {% include 'header.html' %}
+
+    <!-- Основной контент для каждой страницы -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Вставка footer.html -->
+    {% include 'footer.html' %}
+
+    <!--<< Scripts >>-->
+    <script src="{% static 'scripts/deletedata.js' %}"></script>
+    <script src="{% static 'scripts/searchtable.js' %}"></script>
+    <script src="{% static 'scripts/deletew.js' %}" type="text/javascript"></script>
+    <script src="{% static 'scripts/details.js' %}" type="text/javascript"></script>
+    <script src="{% static 'scripts/windows.js' %}" type="text/javascript"></script>
+    <script src="{% static 'scripts/logout.js' %}" type="text/javascript"></script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

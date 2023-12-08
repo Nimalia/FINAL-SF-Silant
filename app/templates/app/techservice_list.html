@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<div class="client">
+<img src="{% static 'icons/user.svg' %}" alt="user">
+{% if user.is_superuser %}
+    <h2>Администратор</h2>
+{% elif user.groups.first.name == "Менеджер" %}
+    <h2>Менеджер {{user.first_name}}</h2>
+{% elif user.groups.first.name == "Сервисная организация" %}
+    <h2>Сервисная организация {{user.first_name}}</h2>
+{% else %}
+    <h2>Клиент {{user.first_name}} </h2>
+{% endif %}
+</div>
+<nav class="nav-panel">
+    <ul>
+        <li><a href="{% url 'vehicle_list' %}"><img src="{% static 'icons/vehicle.svg' %}" alt="Техника"> Техника</a></li>
+        <li class="active"><a href="{% url 'techservice_list' %}"><img src="{% static 'icons/ts.svg' %}" alt="Техобслуживание"> Тех.обслуживание</a></li>
+        <li><a href="{% url 'claim_list' %}"><img src="{% static 'icons/claim.svg' %}" alt="Рекламация"> Рекламация</a></li>
+    </ul>
+</nav>
+<h3>Информация о комплектации и технических характеристиках Вашей техники</h3>
+<div class="action-buttons">
+    <a href="{% url 'techservice_create' %}">Новое тех.обслуживание</a>
+</div>
+<section class="area-table">
+<div class="table-container">
+<table id="tableInfo" class="datatable" data-order='[0, "desc"]'>
+    <thead>
+        <tr>
+            <th class="{% if ordering == 'date' %}active{% endif %}"><a href="?ordering=date">Дата проведения тех.обслуживания</a></th>
+            <th class="{% if ordering == 'techservicetype' %}active{% endif %}"><a href="?ordering=techservicetype">Вид тех.обслуживания</a></th>
+            <th class="{% if ordering == 'operating_time' %}active{% endif %}"><a href="?ordering=operating_time">Наработка, м/час</a></th>
+            <th class="{% if ordering == 'order_number' %}active{% endif %}"><a href="?ordering=order_number">№ заказ-наряда</a></th>
+            <th class="{% if ordering == 'order_date' %}active{% endif %}"><a href="?ordering=order_date">Дата заказ-наряда</a></th>
+            <th class="{% if ordering == 'vehicle' %}active{% endif %}"><a href="?ordering=vehicle">Техника</a></th>
+            <th class="{% if ordering == 'service_company' %}active{% endif %}"><a href="?ordering=service_company">Организация, проводившая тех.обслуживание</a></th>
+            <th></th>
+        </tr>
+    </thead>
+    
+        <tbody>
+            {% for obj in object_list %}
+        <tr>
+            <td>{{obj.date|date:"d.m.Y"}}</td>
+            <td><span class="details_js" data-url="{% url 'techservice_details' obj.pk 'techservicetype' %}">{{obj.techservicetype}}</span></td>
+            <td>{{obj.operating_time}}</td>
+            <td>{{obj.order_number}}</td>
+            <td>{{obj.order_date|date:"d.m.Y"}}</td>
+            <td><a href="{% url 'vehicle_detail' obj.vehicle.pk %}">{{obj.vehicle}}</a></td>
+            {% if obj.service_company %}
+            <td><span class="details_js" data-url="{% url 'techservice_details' obj.pk 'service_company' %}">{{obj.service_company}}</span></td>
+            {% else %}
+            <td>Нет компании</td>
+            {% endif %}
+            <td>
+                <div class="actions">
+                    <a class="update" href="{% url 'techservice_update' obj.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="deletedata" data-url="{% url 'techservice_delete' obj.pk %}"><i class="fas fa-times"></i></a>
+                </div>
+            </td>
+        </tr>
+    
+    {% endfor %}
+    </tbody>
+
+</table>
+</div>
+</section>
+<div class="pagination">
+    <span class="step-links">
+        {% if techservice.has_previous %}
+            <a href="?page=1">В начало</a>
+            <a href="?page={{ techservice.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ techservice.number }} из {{ techservice.paginator.num_pages }}
+        </span>
+
+        {% if techservice.has_next %}
+            <a href="?page={{ techservice.next_page_number }}">Далее</a>
+            <a href="?page={{ techservice.paginator.num_pages }}">В конец</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
